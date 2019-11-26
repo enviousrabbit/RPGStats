@@ -15,7 +15,7 @@
 #include <ctime>
 #include "entity.h"
 
-const int SKILLPOINTS = 5;
+const int SKILLPOINTS = 4;
 
 const int SKILLINCREASESTRENGTH = 3;
 const int SKILLINCREASEDEFENSE = 2;
@@ -106,10 +106,12 @@ int game(){
 
 
     clearScreen();
-    war(player);
+
+    int battlesFought = war(player);
     clearScreen();
     std::cout << "Final Player Stats.\n";
     printStats(player);
+    std::cout << "Battles Won: " << battlesFought << std::endl;
     pause();
 
 
@@ -145,6 +147,10 @@ int war(Entity& player){
        printStats(player);
        if(player.getHealthPotions() >= 1){
         while(true){
+       clearScreen();
+       std::cout << "Next Enemy Stats Below.\n";
+                    printStats(enemy);
+                    printStats(player);
        std::cout << "-----------------------\n" << "Use Health Potion?(Heals half of max health)\n"
                  << "Enter y for yes or n for no: ";
        char answer;
@@ -174,7 +180,7 @@ int war(Entity& player){
        clearScreen();
 
     }
-    return 0;
+    return battlesFought;
 }
 
 int battle(Entity &player, Entity &enemy, int battlesFought){
@@ -373,6 +379,6 @@ void useHealthPotion(Entity& e){
     else{
     e.setHealth(e.getHealth() + healthIncrease);
     }
-
+    e.setHealthPotions(e.getHealthPotions() - 1);
 
 }

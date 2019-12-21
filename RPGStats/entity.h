@@ -7,7 +7,7 @@
 class Entity
 {
 public:
-    Entity(int mh, int h, int str, int def, int exp = 0, int lev = 1, int efnl = 200, int hP = 0, std::string n = "Enemy");
+    Entity(int mh, int h, int str, int spd = 0, int exp = 0, int lev = 1, int efnl = 200, int hP = 0, std::string n = "Enemy");
     void takeDamage(int amount);
 
     int getHealth(){return health;}
@@ -19,8 +19,8 @@ public:
     int getStrength(){return strength;}
     void setStrength(int str){strength = str;}
 
-    int getDefense(){return defense;}
-    void setDefense(int def){defense = def;}
+//    int getDefense(){return defense;}
+//   void setDefense(int def){defense = def;}
 
     int getExperience(){return experience;}
     void setExperience(int exp){experience = exp;}
@@ -35,17 +35,21 @@ public:
     void setHealthPotions(int hP){healthPotions = hP;}
 
     std::string getName(){ return name;}
-    std::string setName(std::string n){name = n;}
+    void setName(std::string n){name = n;}
+
+    int getSpeed(){return speed;}
+    void setSpeed(int s){speed = s;}
 
 private:
     int maxHealth;
     int health;
     int strength;
-    int defense;
+//  int defense;
     int experience;
     int experienceForNextLevel;
     int level;
     int healthPotions;
+    int speed;
     std::string name;
 
 };
